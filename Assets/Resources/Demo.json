@@ -1,0 +1,47 @@
+[
+  {
+    "Name": "类型一",
+    "Childs": [
+      {
+        "Title": "菜单一",
+        "Content": "xxxxxxxxxxxx",
+        "Url": ""
+      },
+      {
+        "Title": "菜单二",
+        "Content": "xxxxxxxxxxxx",
+        "Url": ""
+      }
+    ]
+  },
+  {
+    "Name": "类型二",
+    "Childs": [
+      {
+        "Title": "菜单一",
+        "Content": "xxxxxxxxxxxx",
+        "Url": ""
+      },
+      {
+        "Title": "菜单二",
+        "Content": "xxxxxxxxxxxx",
+        "Url": ""
+      }
+    ]
+  },
+  {
+    "Name": "类型三",
+    "Childs": [
+      {
+        "Title": "菜单一",
+        "Content": "xxxxxxxxxxxx",
+        "Url": ""
+      },
+      {
+        "Title": "菜单二",
+        "Content": "xxxxxxxxxxxx",
+        "Url": ""
+      }
+    ]
+  }
+]
