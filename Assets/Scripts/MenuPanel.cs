@@ -7,6 +7,7 @@ public class MenuPanel : MonoBehaviour
 {
     private TreeView m_TreeView;
 
+    [SerializeField] private GameObject m_Image;
     [SerializeField] private TextMeshProUGUI m_Title;
     [SerializeField] private TextMeshProUGUI m_Content;
     [SerializeField] private Button m_StartBtn;
@@ -27,7 +28,10 @@ public class MenuPanel : MonoBehaviour
         m_SubData = data;
         m_Title.text = data.Title;
         m_Content.text = data.Content;
-        m_StartBtn.gameObject.SetActive(!string.IsNullOrEmpty(data.Content));
+
+        var active = !string.IsNullOrEmpty(data.Content);
+        m_StartBtn.gameObject.SetActive(active);
+        m_Image.SetActive(active);
 
     }
     
