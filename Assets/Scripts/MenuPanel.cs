@@ -27,6 +27,8 @@ public class MenuPanel : MonoBehaviour
         m_SubData = data;
         m_Title.text = data.Title;
         m_Content.text = data.Content;
+        m_StartBtn.gameObject.SetActive(!string.IsNullOrEmpty(data.Content));
+
     }
     
     private void OnStartClick()
