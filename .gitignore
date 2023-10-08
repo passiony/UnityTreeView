@@ -6,6 +6,7 @@
 /[Hh]ybridCLRData/
 /[Aa]ssetPackage/
 /[Oo]ut/
+/[Ll]ogs/
 /Assets/AssetStoreTools*
 /.vs/
 /.idea/
@@ -25,4 +26,4 @@
 !/Assets/StreamingAssets/.gitkeep
 /ProjectSettings/ProjectVersion.txt
 /UnityPackageManager/*
-Logs
+
