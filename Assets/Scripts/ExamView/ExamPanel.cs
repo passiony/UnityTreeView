@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -14,13 +15,22 @@ public class ExamPanel : MonoBehaviour
     private List<QuestionForm> m_List;
     private int m_Index = 0;
 
-    void Start()
+    void Awake()
     {
-        var json = m_ExamTextAsset.text;
-        var examData = JsonConvert.DeserializeObject<ExamData[]>(json);
         m_List = new List<QuestionForm>();
         m_QuestionPrefab.SetActive(false);
+
+        m_NextBtn.onClick.AddListener(this.OnNextClick);
+        m_SubmitBtn.onClick.AddListener(this.OnSubmitClick);
+    }
+
+    public void OnEnable()
+    {
+        ClearAll();
         
+        m_Index = 0;
+        var json = m_ExamTextAsset.text;
+        var examData = JsonConvert.DeserializeObject<ExamData[]>(json);
         foreach (var dtData in examData)
         {
             var question = GameObject.Instantiate(m_QuestionPrefab, m_ScrollView.content);
@@ -32,8 +42,15 @@ public class ExamPanel : MonoBehaviour
         }
 
         ShowForm(m_Index);
-        m_NextBtn.onClick.AddListener(this.OnNextClick);
-        m_SubmitBtn.onClick.AddListener(this.OnSubmitClick);
+    }
+
+    private void ClearAll()
+    {
+        foreach (var form in m_List)
+        {
+            Destroy(form.gameObject);
+        }
+        m_List.Clear();
     }
 
     void ShowForm(int index)
