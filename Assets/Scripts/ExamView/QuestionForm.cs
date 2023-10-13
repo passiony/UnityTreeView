@@ -21,12 +21,15 @@ public class QuestionForm : MonoBehaviour
         content.text = data.Content;
         answer.InitData(data);
         rules.text = data.Rules;
+
+        ShowRule(false);
     }
 
     public void OnSubmit()
     {
         var result = CheckResult();
         answer.HilightRight(m_ExamData.Answer);
+        ShowRule(true);
 
         if (result)
         {
@@ -57,5 +60,11 @@ public class QuestionForm : MonoBehaviour
         }
 
         return true;
+    }
+
+    void ShowRule(bool value)
+    {
+        ruleTitle.gameObject.SetActive(value);
+        rules.gameObject.SetActive(value);
     }
 }

@@ -14,9 +14,17 @@ public class AnswerForm : MonoBehaviour
     private List<OptionCell> m_Cells;
     private ExamData m_ExamData;
 
-    private void Awake()
+    private ToggleGroup Group
     {
-        m_Group = gameObject.GetComponent<ToggleGroup>();
+        get
+        {
+            if (m_Group == null)
+            {
+                m_Group = gameObject.GetComponent<ToggleGroup>();
+            }
+
+            return m_Group;
+        }
     }
 
     public void InitData(ExamData data)
@@ -32,11 +40,8 @@ public class AnswerForm : MonoBehaviour
             var cell = go.GetComponent<OptionCell>();
             cell.InitData(data.Menus[i], data.Images[i]);
             cell.gameObject.SetActive(true);
-            if (singleOption)
-            {
-                cell.m_Toggle.group = m_Group;
-            }
-
+            cell.m_Toggle.group = singleOption ? Group : null;
+            
             m_Cells.Add(cell);
         }
     }
@@ -61,7 +66,7 @@ public class AnswerForm : MonoBehaviour
         var result = GetResult();
         foreach (var id in result)
         {
-            m_Cells[id - 1].ShowError();
+            m_Cells[id - 1].ShowRight();
         }
     }
 
@@ -71,6 +76,20 @@ public class AnswerForm : MonoBehaviour
         foreach (var id in result)
         {
             if (!m_ExamData.Answer.Contains(id))
+            {
+                m_Cells[id - 1].ShowError();
+            }
+        }
+
+        //多选未选
+        if (m_ExamData.Answer.Length > 1)
+        {
+            var temp = new List<int>(m_ExamData.Answer);
+            foreach (var id in result)
+            {
+                temp.Remove(id);
+            }
+            foreach (var id in temp)
             {
                 m_Cells[id - 1].ShowError();
             }

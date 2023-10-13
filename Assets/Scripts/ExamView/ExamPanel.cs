@@ -48,6 +48,7 @@ public class ExamPanel : MonoBehaviour
     private void OnSubmitClick()
     {
          m_List[m_Index].OnSubmit();
+         LayoutRebuilder.ForceRebuildLayoutImmediate(m_ScrollView.content);
     }
 
     private void OnNextClick()
@@ -58,5 +59,6 @@ public class ExamPanel : MonoBehaviour
             m_Index = 0;
         }
         ShowForm(m_Index);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(m_ScrollView.content);
     }
 }
