@@ -14,12 +14,13 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] private VideoPlayer m_VideoPlayer;
     [SerializeField] private Button m_StartBtn;
     [SerializeField] private Button m_BackBtn;
+    
     [SerializeField] private Button m_ExamBtn;
-    [SerializeField] private Button m_ScoreBtn;
-    [SerializeField] private Button m_StatisBtn;
-
     [SerializeField] private GameObject m_CommPanel;
     [SerializeField] private GameObject m_ExamPanel;
+    
+    [SerializeField] private Button m_ScoreBtn;
+    [SerializeField] private Button m_StatisBtn;
     [SerializeField] private GameObject m_ScorePanel;
     [SerializeField] private GameObject m_StatisPanel;
 
@@ -38,15 +39,13 @@ public class MenuPanel : MonoBehaviour
         m_BackBtn.onClick.AddListener(this.OnQuitApp);
 
         m_ExamBtn.onClick.AddListener(this.OnExamClick);
-        m_ScoreBtn.onClick.AddListener(this.OnUserClick);
+        m_ScoreBtn.onClick.AddListener(this.OnScoreClick);
         m_StatisBtn.onClick.AddListener(this.OnStatisClick);
     }
 
     void HideAll()
     {
         m_CommPanel.SetActive(false);
-        m_ScorePanel.SetActive(false);
-        m_StatisPanel.SetActive(false);
         m_ExamPanel.SetActive(false);
     }
 
@@ -56,15 +55,13 @@ public class MenuPanel : MonoBehaviour
         m_ExamPanel.SetActive(true);
     }
 
-    private void OnUserClick()
+    private void OnScoreClick()
     {
-        HideAll();
         m_ScorePanel.SetActive(true);
     }
 
     private void OnStatisClick()
     {
-        HideAll();
         m_StatisPanel.SetActive(true);
     }
 
