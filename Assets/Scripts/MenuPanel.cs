@@ -13,6 +13,7 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_Content;
     [SerializeField] private VideoPlayer m_VideoPlayer;
     [SerializeField] private Button m_StartBtn;
+    [SerializeField] private Button m_BackBtn;
     [SerializeField] private TextAsset m_JsonAsset;
 
     private SubData m_SubData;
@@ -23,6 +24,12 @@ public class MenuPanel : MonoBehaviour
         m_TreeView.InitFromJson(json);
         m_TreeView.OnSubBtnClick.AddListener(this.OnSubClick);
         m_StartBtn.onClick.AddListener(this.OnStartClick);
+        m_BackBtn.onClick.AddListener(this.OnQuitApp);
+    }
+
+    private void OnQuitApp()
+    {
+        Application.Quit();
     }
 
     private void OnSubClick(SubData data)
