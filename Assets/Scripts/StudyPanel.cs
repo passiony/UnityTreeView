@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class MenuPanel : MonoBehaviour
+public class StudyPanel : MonoBehaviour
 {
     private TreeView m_TreeView;
 
@@ -14,16 +14,6 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] private VideoPlayer m_VideoPlayer;
     [SerializeField] private Button m_StartBtn;
     [SerializeField] private Button m_BackBtn;
-    
-    [SerializeField] private Button m_ExamBtn;
-    [SerializeField] private GameObject m_CommPanel;
-    [SerializeField] private GameObject m_ExamPanel;
-    
-    [SerializeField] private Button m_ScoreBtn;
-    [SerializeField] private Button m_StatisBtn;
-    [SerializeField] private GameObject m_ScorePanel;
-    [SerializeField] private GameObject m_StatisPanel;
-
 
     [SerializeField] private TextAsset m_JsonAsset;
 
@@ -37,44 +27,15 @@ public class MenuPanel : MonoBehaviour
         m_TreeView.OnSubBtnClick.AddListener(this.OnSubClick);
         m_StartBtn.onClick.AddListener(this.OnStartClick);
         m_BackBtn.onClick.AddListener(this.OnQuitApp);
-
-        m_ExamBtn.onClick.AddListener(this.OnExamClick);
-        m_ScoreBtn.onClick.AddListener(this.OnScoreClick);
-        m_StatisBtn.onClick.AddListener(this.OnStatisClick);
-    }
-
-    void HideAll()
-    {
-        m_CommPanel.SetActive(false);
-        m_ExamPanel.SetActive(false);
-    }
-
-    private void OnExamClick()
-    {
-        HideAll();
-        m_ExamPanel.SetActive(true);
-    }
-
-    private void OnScoreClick()
-    {
-        m_ScorePanel.SetActive(true);
-    }
-
-    private void OnStatisClick()
-    {
-        m_StatisPanel.SetActive(true);
     }
 
     private void OnQuitApp()
     {
-        Application.Quit();
+        gameObject.SetActive(false);
     }
 
     private void OnSubClick(SubData data)
     {
-        HideAll();
-        m_CommPanel.SetActive(true);
-        
         m_SubData = data;
         m_Title.text = data.Title;
         m_Content.text = data.Content;
